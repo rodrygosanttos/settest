@@ -12,17 +12,17 @@
     }
 
     body {
-      background-image: url('ma.jpeg'); /* Substitua pelo nome da sua imagem */
+      background-image: url('ma.jpeg'); /* Coloque sua imagem na mesma pasta e use esse nome */
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      background-attachment: fixed; /* efeito paralaxe */
+      background-attachment: fixed;
       font-family: Arial, sans-serif;
       color: white;
     }
 
     header {
-      background-color: rgba(0, 0, 0, 0.7); /* fundo escuro semi-transparente */
+      background-color: rgba(0, 0, 0, 0.7);
       padding: 40px 20px;
       text-align: center;
     }
@@ -44,7 +44,7 @@
     }
 
     main {
-      background-color: rgba(0, 0, 0, 0.6); /* fundo escuro para contraste */
+      background-color: rgba(0, 0, 0, 0.6);
       padding: 30px;
       border-radius: 10px;
       max-width: 800px;
@@ -101,33 +101,25 @@
     <h2>Agende seu horário</h2>
 
     <label for="dia">Escolha o dia:</label>
-    <select id="dia">
-      <option value="segunda-feira">Segunda-feira</option>
-      <option value="terça-feira">Terça-feira</option>
-      <option value="quarta-feira">Quarta-feira</option>
-      <option value="quinta-feira">Quinta-feira</option>
-      <option value="sexta-feira">Sexta-feira</option>
+    <select id="dia" onchange="atualizarHorarios()">
+      <option value="Segunda-feira">Segunda-feira</option>
+      <option value="Terça-feira">Terça-feira</option>
+      <option value="Quarta-feira">Quarta-feira</option>
+      <option value="Quinta-feira">Quinta-feira</option>
+      <option value="Sexta-feira">Sexta-feira</option>
+      <option value="Sábado">Sábado</option>
+      <option value="Domingo">Domingo</option>
     </select>
 
     <label for="hora">Escolha o horário:</label>
-    <select id="hora">
-      <option value="09h">09h</option>
-      <option value="10h">10h</option>
-      <option value="11h">11h</option>
-      <option value="14h">14h</option>
-      <option value="15h">15h</option>
-      <option value="16h">16h</option>
-    </select>
+    <select id="hora"></select>
 
     <button onclick="agendar()">Agendar via WhatsApp</button>
 
     <h2>Sobre Mim</h2>
-    <p>Olá, sou Rafael Muniz, um massoterapeuta dedicada a promover o bem-estar e a saúde através de técnicas de massagem terapêutica. Com anos de experiência, desenvolvi um profundo conhecimento do corpo humano e de suas necessidades.
-
-A minha abordagem é holística, focada em tratar não apenas os sintomas, mas também as causas subjacentes do desconforto. Acredito que a massagem pode ser uma ferramenta poderosa para aliviar o stress, reduzir a dor e melhorar a qualidade de vida.
-
-Ofereço também cursos de formação em diversas técnicas de massagem, para quem deseja aprofundar os seus conhecimentos e iniciar uma carreira nesta área gratificante. Junte-se a mim e vamos construir um futuro mais saudável e relaxado!
-    </p>
+    <p>Olá, sou Rafael Muniz, um massoterapeuta dedicado a promover o bem-estar e a saúde através de técnicas de massagem terapêutica. Com anos de experiência, desenvolvi um profundo conhecimento do corpo humano e de suas necessidades.</p>
+    <p>A minha abordagem é holística, focada em tratar não apenas os sintomas, mas também as causas do desconforto. Acredito que a massagem pode ser uma ferramenta poderosa para aliviar o estresse, reduzir a dor e melhorar a qualidade de vida.</p>
+    <p>Ofereço também cursos de formação em diversas técnicas de massagem. Junte-se a mim e vamos construir um futuro mais saudável e relaxado!</p>
   </main>
 
   <!-- RODAPÉ -->
@@ -135,16 +127,39 @@ Ofereço também cursos de formação em diversas técnicas de massagem, para qu
     <p>&copy; 2025 Rafael Muniz - Todos os direitos reservados</p>
   </footer>
 
-  <!-- SCRIPT WHATSAPP -->
+  <!-- SCRIPT -->
   <script>
-  function agendar() {
-    const dia = document.getElementById("dia").value;
-    const hora = document.getElementById("hora").value;
-    const telefone = "5581981586358";
-    const mensagem = Olá, gostaria de agendar uma sessão para ${dia} às ${hora} com Rafael Muniz.;
-    const url = https://api.whatsapp.com/send?phone=${telefone}&text=${encodeURIComponent(mensagem)};
-    window.open(url, "_blank");
-  }
+    function atualizarHorarios() {
+      const diaSelecionado = document.getElementById("dia").value;
+      const horaSelect = document.getElementById("hora");
+      horaSelect.innerHTML = "";
+
+      let horarios = [];
+
+      if (["Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira"].includes(diaSelecionado)) {
+        horarios = ["12h", "13h", "14h", "15h", "16h"];
+      } else {
+        horarios = ["10h", "11h", "12h", "13h", "14h", "15h", "16h", "17h", "18h", "19h"];
+      }
+
+      horarios.forEach(hora => {
+        const option = document.createElement("option");
+        option.value = hora;
+        option.textContent = hora;
+        horaSelect.appendChild(option);
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", atualizarHorarios);
+
+    function agendar() {
+      const dia = document.getElementById("dia").value;
+      const hora = document.getElementById("hora").value;
+      const telefone = "5581981586358";
+      const mensagem = Olá, gostaria de agendar uma sessão para ${dia} às ${hora} com Rafael Muniz.;
+      const url = https://api.whatsapp.com/send?phone=${telefone}&text=${encodeURIComponent(mensagem)};
+      window.open(url, "_blank");
+    }
   </script>
 
 </body>
