@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>terapeutaRafaelMuniz.com</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-image: url('ma.jpeg'); /* Substitua pelo nome da sua imagem */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed; /* efeito paralaxe */
+      font-family: Arial, sans-serif;
+      color: white;
+    }
+
+    header {
+      background-color: rgba(0, 0, 0, 0.7); /* fundo escuro semi-transparente */
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+
+    nav a {
+      color: #fff;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    main {
+      background-color: rgba(0, 0, 0, 0.6); /* fundo escuro para contraste */
+      padding: 30px;
+      border-radius: 10px;
+      max-width: 800px;
+      margin: 40px auto;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    }
+
+    main h2 {
+      margin-bottom: 20px;
+    }
+
+    label, select, button {
+      display: block;
+      margin: 15px 0;
+      font-size: 16px;
+    }
+
+    button {
+      background-color: #25D366;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #1ebc5e;
+    }
+
+    footer {
+      background-color: rgba(0, 0, 0, 0.7);
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- CABEÇALHO -->
+  <header>
+    <h1>Rafael Muniz - Massoterapeuta</h1>
+    <nav>
+      <a href="https://maps.app.goo.gl/Wbxv1Mz2XvNGQaGV6" target="_blank">Endereço</a>
+      <a href="https://rafaelmunizmassoterapeuta.my.canva.site/" target="_blank">Sobre</a>
+      <a href="https://www.instagram.com/rafaelmuniz_massoterapeuta" target="_blank">Instagram</a>
+    </nav>
+  </header>
+
+  <!-- CONTEÚDO -->
+  <main>
+    <h2>Agende seu horário</h2>
+
+    <label for="dia">Escolha o dia:</label>
+    <select id="dia">
+      <option value="segunda-feira">Segunda-feira</option>
+      <option value="terça-feira">Terça-feira</option>
+      <option value="quarta-feira">Quarta-feira</option>
+      <option value="quinta-feira">Quinta-feira</option>
+      <option value="sexta-feira">Sexta-feira</option>
+    </select>
+
+    <label for="hora">Escolha o horário:</label>
+    <select id="hora">
+      <option value="09h">09h</option>
+      <option value="10h">10h</option>
+      <option value="11h">11h</option>
+      <option value="14h">14h</option>
+      <option value="15h">15h</option>
+      <option value="16h">16h</option>
+    </select>
+
+    <button onclick="agendar()">Agendar via WhatsApp</button>
+
+    <h2>Sobre Mim</h2>
+    <p>Olá, sou Rafael Muniz, um massoterapeuta dedicada a promover o bem-estar e a saúde através de técnicas de massagem terapêutica. Com anos de experiência, desenvolvi um profundo conhecimento do corpo humano e de suas necessidades.
+
+A minha abordagem é holística, focada em tratar não apenas os sintomas, mas também as causas subjacentes do desconforto. Acredito que a massagem pode ser uma ferramenta poderosa para aliviar o stress, reduzir a dor e melhorar a qualidade de vida.
+
+Ofereço também cursos de formação em diversas técnicas de massagem, para quem deseja aprofundar os seus conhecimentos e iniciar uma carreira nesta área gratificante. Junte-se a mim e vamos construir um futuro mais saudável e relaxado!
+    </p>
+  </main>
+
+  <!-- RODAPÉ -->
+  <footer>
+    <p>&copy; 2025 Rafael Muniz - Todos os direitos reservados</p>
+  </footer>
+
+  <!-- SCRIPT WHATSAPP -->
+  <script>
+  function agendar() {
+    const dia = document.getElementById("dia").value;
+    const hora = document.getElementById("hora").value;
+    const telefone = "5581981586358";
+    const mensagem = Olá, gostaria de agendar uma sessão para ${dia} às ${hora} com Rafael Muniz.;
+    const url = https://api.whatsapp.com/send?phone=${telefone}&text=${encodeURIComponent(mensagem)};
+    window.open(url, "_blank");
+  }
+  </script>
+
+</body>
+</html>
