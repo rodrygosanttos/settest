@@ -12,29 +12,33 @@
     }
 
     body {
-      background-image: url('ma.jpeg'); /* Coloque sua imagem na mesma pasta e use esse nome */
+      font-family: Arial, sans-serif;
+      background-image: url('ma.jpeg'); /* substitua com sua imagem */
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
       background-attachment: fixed;
-      font-family: Arial, sans-serif;
       color: white;
     }
 
     header {
       background-color: rgba(0, 0, 0, 0.7);
-      padding: 40px 20px;
+      padding: 30px 20px;
       text-align: center;
     }
 
     header h1 {
-      font-size: 36px;
+      font-size: 32px;
       margin-bottom: 10px;
+    }
+
+    nav {
+      margin-top: 10px;
     }
 
     nav a {
       color: #fff;
-      margin: 0 15px;
+      margin: 0 10px;
       text-decoration: none;
       font-weight: bold;
     }
@@ -45,30 +49,40 @@
 
     main {
       background-color: rgba(0, 0, 0, 0.6);
-      padding: 30px;
+      padding: 25px;
       border-radius: 10px;
       max-width: 800px;
       margin: 40px auto;
       box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
     }
 
-    main h2 {
-      margin-bottom: 20px;
+    h2 {
+      margin-bottom: 15px;
+      font-size: 24px;
     }
 
     label, select, button {
       display: block;
       margin: 15px 0;
       font-size: 16px;
+      width: 100%;
+    }
+
+    select {
+      padding: 8px;
+      border-radius: 4px;
+      border: none;
     }
 
     button {
       background-color: #25D366;
       color: white;
-      padding: 10px 20px;
+      padding: 12px;
       border: none;
       border-radius: 5px;
+      font-size: 18px;
       cursor: pointer;
+      margin-top: 10px;
     }
 
     button:hover {
@@ -81,6 +95,26 @@
       text-align: center;
       padding: 20px;
       margin-top: 40px;
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 24px;
+      }
+
+      main {
+        margin: 20px;
+        padding: 20px;
+      }
+
+      nav a {
+        display: block;
+        margin: 8px 0;
+      }
+
+      button {
+        font-size: 16px;
+      }
     }
   </style>
 </head>
@@ -101,7 +135,7 @@
     <h2>Agende seu horário</h2>
 
     <label for="dia">Escolha o dia:</label>
-    <select id="dia" onchange="atualizarHorarios()">
+    <select id="dia">
       <option value="Segunda-feira">Segunda-feira</option>
       <option value="Terça-feira">Terça-feira</option>
       <option value="Quarta-feira">Quarta-feira</option>
@@ -112,14 +146,25 @@
     </select>
 
     <label for="hora">Escolha o horário:</label>
-    <select id="hora"></select>
+    <select id="hora">
+      <option value="12h">12h</option>
+      <option value="13h">13h</option>
+      <option value="14h">14h</option>
+      <option value="15h">15h</option>
+      <option value="16h">16h</option>
+      <option value="17h">17h</option>
+      <option value="18h">18h</option>
+      <option value="19h">19h</option>
+    </select>
 
     <button onclick="agendar()">Agendar via WhatsApp</button>
 
     <h2>Sobre Mim</h2>
-    <p>Olá, sou Rafael Muniz, um massoterapeuta dedicado a promover o bem-estar e a saúde através de técnicas de massagem terapêutica. Com anos de experiência, desenvolvi um profundo conhecimento do corpo humano e de suas necessidades.</p>
-    <p>A minha abordagem é holística, focada em tratar não apenas os sintomas, mas também as causas do desconforto. Acredito que a massagem pode ser uma ferramenta poderosa para aliviar o estresse, reduzir a dor e melhorar a qualidade de vida.</p>
-    <p>Ofereço também cursos de formação em diversas técnicas de massagem. Junte-se a mim e vamos construir um futuro mais saudável e relaxado!</p>
+    <p>
+      Olá, sou Rafael Muniz, massoterapeuta dedicado a promover bem-estar e saúde por meio da massagem terapêutica.
+      Trabalho com técnicas que ajudam a aliviar o estresse, reduzir dores e trazer mais qualidade de vida.
+      Também ofereço cursos para quem deseja aprender e seguir carreira nessa área.
+    </p>
   </main>
 
   <!-- RODAPÉ -->
@@ -127,37 +172,14 @@
     <p>&copy; 2025 Rafael Muniz - Todos os direitos reservados</p>
   </footer>
 
-  <!-- SCRIPT -->
+  <!-- SCRIPT DE AGENDAMENTO -->
   <script>
-    function atualizarHorarios() {
-      const diaSelecionado = document.getElementById("dia").value;
-      const horaSelect = document.getElementById("hora");
-      horaSelect.innerHTML = "";
-
-      let horarios = [];
-
-      if (["Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira"].includes(diaSelecionado)) {
-        horarios = ["12h", "13h", "14h", "15h", "16h"];
-      } else {
-        horarios = ["10h", "11h", "12h", "13h", "14h", "15h", "16h", "17h", "18h", "19h"];
-      }
-
-      horarios.forEach(hora => {
-        const option = document.createElement("option");
-        option.value = hora;
-        option.textContent = hora;
-        horaSelect.appendChild(option);
-      });
-    }
-
-    document.addEventListener("DOMContentLoaded", atualizarHorarios);
-
     function agendar() {
       const dia = document.getElementById("dia").value;
       const hora = document.getElementById("hora").value;
       const telefone = "5581981586358";
       const mensagem = Olá, gostaria de agendar uma sessão para ${dia} às ${hora} com Rafael Muniz.;
-      const url = https://api.whatsapp.com/send?phone=${telefone}&text=${encodeURIComponent(mensagem)};
+      const url = https://wa.me/${telefone}?text=${encodeURIComponent(mensagem)};
       window.open(url, "_blank");
     }
   </script>
